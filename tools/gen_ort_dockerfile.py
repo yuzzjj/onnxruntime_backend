@@ -120,7 +120,7 @@ RUN wget https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-20
     apt install -y intel-openvino-dev-ubuntu20-${ONNXRUNTIME_OPENVINO_VERSION} && \
     cd ${INTEL_OPENVINO_DIR}/install_dependencies && ./install_openvino_dependencies.sh
 
-ARG INTEL_COMPUTE_RUNTIME_URL=https://github.com.cnpmjs.org/intel/compute-runtime/releases/download/19.41.14441
+ARG INTEL_COMPUTE_RUNTIME_URL=http://storage.360buyimg.com/hdrx-dist/algopy-bak/triton_deps/
 RUN wget ${INTEL_COMPUTE_RUNTIME_URL}/intel-gmmlib_19.3.2_amd64.deb && \
     wget ${INTEL_COMPUTE_RUNTIME_URL}/intel-igc-core_1.0.2597_amd64.deb && \
     wget ${INTEL_COMPUTE_RUNTIME_URL}/intel-igc-opencl_1.0.2597_amd64.deb && \
