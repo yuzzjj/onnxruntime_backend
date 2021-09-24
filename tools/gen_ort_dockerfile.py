@@ -71,7 +71,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # onnxruntime/dockerfiles/scripts/install_common_deps.sh. We don't run
 # that script directly because we don't want cmake installed from that
 # file.
-RUN  sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak && sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g'  /etc/apt/sources.list && sudo apt update
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g'  /etc/apt/sources.list && apt update
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         zip \
