@@ -82,7 +82,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libssl-dev \
         patchelf \
         python3-dev \
-        python3-pip
+        python3-pip  \
+        git
+RUN touch ~/.gitconfig && git config --global  url."https://github.com.cnpmjs.org".insteadOf https://github.com
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh \
          -O ~/miniconda.sh --no-check-certificate && \
     /bin/bash ~/miniconda.sh -b -p /opt/miniconda && \
