@@ -390,9 +390,14 @@ if __name__ == '__main__':
                         type=str,
                         required=False,
                         help='Home directory for TensorRT.')
+    
 
     FLAGS = parser.parse_args()
-
+    print("============================", FLAGS, "=============================")
+    #add by yuzhenjiang
+    FLAGS.cudnn_home="/usr/local/cudnn-8.2/cuda"
+    print("============================", FLAGS, "=============================")
+    
     if target_platform() == 'windows':
         # OpenVINO EP not yet supported for windows build
         if FLAGS.ort_openvino is not None:
