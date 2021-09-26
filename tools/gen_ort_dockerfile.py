@@ -437,8 +437,6 @@ def preprocess_gpu_flags():
 
         if FLAGS.tensorrt_home is None:
             FLAGS.tensorrt_home = '/usr/src/tensorrt'
-        #TODO. by yuzj 
-        FLAGS.cudnn_home = '/usr/local/cudnn-8.2/cuda'
 
 
 if __name__ == '__main__':
