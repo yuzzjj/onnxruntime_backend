@@ -277,8 +277,7 @@ RUN git clone -b rel-%ONNXRUNTIME_VERSION% --recursive %ONNXRUNTIME_REPO% onnxru
     (cd onnxruntime && git submodule update --init --recursive)
 '''
     print("============================", FLAGS, "=============================")
-    #add by yuzhenjiang
-    FLAGS.cudnn_home="/usr/local/cudnn-8.1.1/cuda"
+    FLAGS.cudnn_home="/usr/local/cudnn-$_CUDNN_VERSION/cuda/"
     print("============================", FLAGS, "=============================")
     ep_flags = '--use_cuda'
     if FLAGS.cuda_version is not None:
