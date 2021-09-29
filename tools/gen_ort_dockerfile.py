@@ -276,9 +276,6 @@ ARG ONNXRUNTIME_REPO
 RUN git clone -b rel-%ONNXRUNTIME_VERSION% --recursive %ONNXRUNTIME_REPO% onnxruntime && \
     (cd onnxruntime && git submodule update --init --recursive)
 '''
-    print("============================", FLAGS, "=============================")
-    FLAGS.cudnn_home="/usr/local/cudnn-$_CUDNN_VERSION/cuda/"
-    print("============================", FLAGS, "=============================")
     ep_flags = '--use_cuda'
     if FLAGS.cuda_version is not None:
         ep_flags += ' --cuda_version "{}"'.format(FLAGS.cuda_version)
@@ -392,7 +389,10 @@ if __name__ == '__main__':
                         help='Home directory for TensorRT.')
 
     FLAGS = parser.parse_args()
-
+    print("============================", FLAGS, "=============================")
+    #add by yuzhenjiang
+    FLAGS.cudnn_home="/usr/local/cudnn-8.1/cuda"
+    print("============================", FLAGS, "=============================")
     if target_platform() == 'windows':
         # OpenVINO EP not yet supported for windows build
         if FLAGS.ort_openvino is not None:
