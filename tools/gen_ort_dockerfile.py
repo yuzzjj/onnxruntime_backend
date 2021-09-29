@@ -71,7 +71,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 # onnxruntime/dockerfiles/scripts/install_common_deps.sh. We don't run
 # that script directly because we don't want cmake installed from that
 # file.
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g'  /etc/apt/sources.list && apt update
+RUN apt-get install -y --no-install-recommends \
         wget \
         zip \
         ca-certificates \
@@ -82,7 +83,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libssl-dev \
         patchelf \
         python3-dev \
-        python3-pip
+        python3-pip \
+        git
+RUN touch ~/.gitconfig && git config --global  url."https://github.com.cnpmjs.org".insteadOf https://github.com
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh \
          -O ~/miniconda.sh --no-check-certificate && \
     /bin/bash ~/miniconda.sh -b -p /opt/miniconda && \
@@ -115,7 +118,8 @@ RUN wget https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-20
     apt install -y intel-openvino-dev-ubuntu20-${ONNXRUNTIME_OPENVINO_VERSION} && \
     cd ${INTEL_OPENVINO_DIR}/install_dependencies && ./install_openvino_dependencies.sh
 
-ARG INTEL_COMPUTE_RUNTIME_URL=https://github.com/intel/compute-runtime/releases/download/19.41.14441
+#ARG INTEL_COMPUTE_RUNTIME_URL=https://github.com/intel/compute-runtime/releases/download/19.41.14441
+ARG INTEL_COMPUTE_RUNTIME_URL=http://storage.360buyimg.com/hdrx-dist/algopy-bak/triton_deps
 RUN wget ${INTEL_COMPUTE_RUNTIME_URL}/intel-gmmlib_19.3.2_amd64.deb && \
     wget ${INTEL_COMPUTE_RUNTIME_URL}/intel-igc-core_1.0.2597_amd64.deb && \
     wget ${INTEL_COMPUTE_RUNTIME_URL}/intel-igc-opencl_1.0.2597_amd64.deb && \
