@@ -391,7 +391,7 @@ if __name__ == '__main__':
     FLAGS = parser.parse_args()
     print("============================", FLAGS, "=============================")
     #add by yuzhenjiang
-    FLAGS.cudnn_home="/usr/local/cudnn"
+    FLAGS.cudnn_home="/usr/local/cudnn-8.1/cuda"
     print("============================", FLAGS, "=============================")
     if target_platform() == 'windows':
         # OpenVINO EP not yet supported for windows build
@@ -429,7 +429,7 @@ if __name__ == '__main__':
         dockerfile_for_windows(FLAGS.output)
 
     else:
-        print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cuda_home， os.environ['CUDNN_VERSION'])
+        print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cuda_home, os.environ['CUDNN_VERSION'])
         if 'CUDNN_VERSION'in os.environ:
             version = None
             m = re.match(r'([0-9]\.[0-9])\.[0-9]\.[0-9]', os.environ['CUDNN_VERSION'])
