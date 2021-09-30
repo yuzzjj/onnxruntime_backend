@@ -431,14 +431,14 @@ if __name__ == '__main__':
     else:
        
         if 'CUDNN_VERSION'in os.environ:
-            print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cuda_home, os.environ['CUDNN_VERSION'])
+            print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cudnn_home, os.environ['CUDNN_VERSION'])
             version = None
             m = re.match(r'([0-9]\.[0-9])\.[0-9]\.[0-9]', os.environ['CUDNN_VERSION'])
             if m:
                 version = m.group(1)
             if FLAGS.cudnn_home is None:
                 FLAGS.cudnn_home = '/usr/local/cudnn-{}/cuda'.format(version)
-        print("2.=========================CUDNN_HOME==========================", FLAGS.cuda_home)       
+        print("2.=========================CUDNN_HOME==========================", FLAGS.cudnn_home)       
         if FLAGS.cuda_home is None:
             FLAGS.cuda_home = '/usr/local/cuda'
 
