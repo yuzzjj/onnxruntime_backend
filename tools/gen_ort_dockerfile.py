@@ -389,10 +389,6 @@ if __name__ == '__main__':
                         help='Home directory for TensorRT.')
 
     FLAGS = parser.parse_args()
-    print("============================", FLAGS, "=============================")
-    #add by yuzhenjiang
-    FLAGS.cudnn_home="/usr/local/cudnn-8.1/cuda"
-    print("============================", FLAGS, "=============================")
     if target_platform() == 'windows':
         # OpenVINO EP not yet supported for windows build
         if FLAGS.ort_openvino is not None:
@@ -431,14 +427,17 @@ if __name__ == '__main__':
     else:
        
         if 'CUDNN_VERSION'in os.environ:
-            print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cudnn_home, os.environ['CUDNN_VERSION'])
             version = None
             m = re.match(r'([0-9]\.[0-9])\.[0-9]\.[0-9]', os.environ['CUDNN_VERSION'])
             if m:
                 version = m.group(1)
             if FLAGS.cudnn_home is None:
                 FLAGS.cudnn_home = '/usr/local/cudnn-{}/cuda'.format(version)
-        print("2.=========================CUDNN_HOME==========================", FLAGS.cudnn_home)       
+            print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cudnn_home, os.environ['CUDNN_VERSION'])
+        print("2.=========================CUDNN_HOME==========================", FLAGS.cudnn_home)
+        print("3.============================", FLAGS, "=============================")
+        FLAGS.cudnn_home="/usr/local/cudnn-8.1/cuda"
+        print("4.============================", FLAGS, "=============================")
         if FLAGS.cuda_home is None:
             FLAGS.cuda_home = '/usr/local/cuda'
 
