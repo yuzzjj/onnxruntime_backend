@@ -429,8 +429,9 @@ if __name__ == '__main__':
         dockerfile_for_windows(FLAGS.output)
 
     else:
-        print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cuda_home, os.environ['CUDNN_VERSION'])
+       
         if 'CUDNN_VERSION'in os.environ:
+            print("1.=========================CUDNN_HOME==========================ENV：CUDNN_VERSION：", FLAGS.cuda_home, os.environ['CUDNN_VERSION'])
             version = None
             m = re.match(r'([0-9]\.[0-9])\.[0-9]\.[0-9]', os.environ['CUDNN_VERSION'])
             if m:
